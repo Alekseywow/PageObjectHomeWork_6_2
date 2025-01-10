@@ -2,69 +2,71 @@ package tests;
 
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
+import utils.TestData;
 
 public class RegistrationPageObjectsTests extends TestBase{
 
     RegistrationPage registrationPage = new RegistrationPage();
+    TestData testData = new TestData();
 
     @Test
     void successfulRegistrationTest() {
         registrationPage.openPage()
                 .removeBlockingElements()
-                .setFirstName("Aleksey")
-                .setLastName("Danilov")
-                .setUserEmail("mail@mail.ru")
-                .setGender("Male")
-                .setNumber("8900909090")
-                .setDateOfBrith("26","September","1994")
-                .setSubjects("English")
-                .setHobbies("Sports")
-                .setImagesPage("image.png")
-                .setAddress("INDIA")
-                .setState("NCR")
-                .setCity("Delhi")
+                .setFirstName(testData.firstName)
+                .setLastName(testData.lastName)
+                .setUserEmail(testData.userEmail)
+                .setGender(testData.genderWrapper)
+                .setNumber(testData.setNumber)
+                .setDateOfBrith(testData.dayOfBirth, testData.monthOfBirth, testData.yearOfBirth)
+                .setSubjects(testData.subject)
+                .setHobbies(testData.hobby)
+                .setImagesPage(testData.picture)
+                .setAddress(testData.address)
+                .setState(testData.state)
+                .setCity(testData.city)
                 .submit();
         registrationPage
                 .submissionCheckSuccess()
                 .submissionModalMessage("Thanks for submitting the form");
         registrationPage
-                .checkResultTablePairs("Student Name", "Aleksey Danilov")
-                .checkResultTablePairs("Student Email", "mail@mail.ru")
-                .checkResultTablePairs("Gender", "Male")
-                .checkResultTablePairs("Mobile", "8900909090")
-                .checkResultTablePairs("Date of Birth", "26" + " " + "September" +","+"1994")
-                .checkResultTablePairs("Subjects", "English")
-                .checkResultTablePairs("Hobbies", "Sports")
-                .checkResultTablePairs("Picture", "image.png")
-                .checkResultTablePairs("Address", "INDIA")
-                .checkResultTablePairs("State and City", "NCR" +" "+ "Delhi");
+                .checkResultTablePairs("Student Name", testData.firstName + " " + testData.lastName)
+                .checkResultTablePairs("Student Email", testData.userEmail)
+                .checkResultTablePairs("Gender", testData.genderWrapper)
+                .checkResultTablePairs("Mobile", testData.setNumber)
+                .checkResultTablePairs("Date of Birth", testData.dayOfBirth + " " + testData.monthOfBirth + "," + testData.yearOfBirth)
+                .checkResultTablePairs("Subjects", testData.subject)
+                .checkResultTablePairs("Hobbies", testData.hobby)
+                .checkResultTablePairs("Picture", testData.picture)
+                .checkResultTablePairs("Address", testData.address)
+                .checkResultTablePairs("State and City", testData.state + " " + testData.city);
     }
     @Test
     void fillRequiredFieldsTest(){
         registrationPage.openPage()
                 .removeBlockingElements()
-                .setFirstName("Aleksey")
-                .setLastName("Danilov")
-                .setGender("Male")
-                .setNumber("8900909090")
+                .setFirstName(testData.firstName)
+                .setLastName(testData.lastName)
+                .setGender(testData.genderWrapper)
+                .setNumber(testData.setNumber)
                 .submit();
         registrationPage
                 .submissionCheckSuccess()
                 .submissionModalMessage("Thanks for submitting the form");
         registrationPage
-                .checkResultTablePairs("Student Name", "Aleksey Danilov")
-                .checkResultTablePairs("Gender", "Male")
-                .checkResultTablePairs("Mobile", "8900909090");
+                .checkResultTablePairs("Student Name", testData.firstName + " " + testData.lastName)
+                .checkResultTablePairs("Gender", testData.genderWrapper)
+                .checkResultTablePairs("Mobile", testData.setNumber);
     }
     @Test
     void shortPhoneNumberNegativeTest(){
         registrationPage
                 .openPage()
                 .removeBlockingElements()
-                .setFirstName("Aleksey")
-                .setLastName("Danilov")
-                .setGender("Male")
-                .setNumber("890090909")
+                .setFirstName(testData.firstName)
+                .setLastName(testData.lastName)
+                .setGender(testData.genderWrapper)
+                .setNumber(testData.setNumberNegative)
                 .submit();
 
         registrationPage
