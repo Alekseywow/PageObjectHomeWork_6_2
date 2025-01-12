@@ -30,7 +30,6 @@ public class RegistrationPage {
     TableComponent tableComponent = new TableComponent();
     ModalComponent modalComponent = new ModalComponent();
     CalendareComponent calendareComponent = new CalendareComponent();
-    PageUtills pageUtills = new PageUtills();
 
     public RegistrationPage openPage() {
         open("/automation-practice-form");
@@ -38,8 +37,9 @@ public class RegistrationPage {
         return this;
     }
     public RegistrationPage removeBlockingElements() {
-        pageUtills.removeBan();
-        pageUtills.removeFooter();
+        executeJavaScript("$('#fixedban').remove()");
+        executeJavaScript("$('footer').remove()");
+
         return this;
     }
     public RegistrationPage setFirstName(String value){
