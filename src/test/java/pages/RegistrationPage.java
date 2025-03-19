@@ -1,6 +1,7 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 import pages.components.CalendareComponent;
 import pages.components.ModalComponent;
 import pages.components.TableComponent;
@@ -30,6 +31,7 @@ public class RegistrationPage {
     TableComponent tableComponent = new TableComponent();
     ModalComponent modalComponent = new ModalComponent();
     CalendareComponent calendareComponent = new CalendareComponent();
+
 
     public RegistrationPage openPage() {
         open("/automation-practice-form");

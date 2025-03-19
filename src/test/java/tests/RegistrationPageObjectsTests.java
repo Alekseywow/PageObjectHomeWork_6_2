@@ -1,5 +1,6 @@
 package tests;
 
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -13,7 +14,7 @@ public class RegistrationPageObjectsTests extends TestBase{
     RegistrationPage registrationPage = new RegistrationPage();
     TestData testData = new TestData();
 
-    @Tag("simple")
+    @Tag("simple_true")
     @DisplayName("Тест на полное заполнение формы")
 
     @Test
